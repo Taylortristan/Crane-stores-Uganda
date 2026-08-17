@@ -1,0 +1,2215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crane Stores Uganda | Verified Non-Food Marketplace & Express Delivery</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#2563eb',
+              600: '#1d4ed8',
+              700: '#1e40af',
+              800: '#1e3a8a',
+              900: '#172554',
+              gold: '#f59e0b',
+              goldDark: '#b45309',
+              teal: '#0d9488',
+              tealDark: '#0f766e',
+              ugandaRed: '#dc2626',
+              ugandaRedDark: '#991b1b',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+    @keyframes pulse-ring {
+      0% { transform: scale(0.95); opacity: 0.8; }
+      50% { transform: scale(1.15); opacity: 0.4; }
+      100% { transform: scale(0.95); opacity: 0.8; }
+    }
+    .pulse-animation {
+      animation: pulse-ring 2s infinite ease-in-out;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col">
+
+  <!-- ADMIN ACTIVE TOP ALERT BANNER -->
+  <div id="admin-top-banner" class="hidden bg-red-800 text-white px-4 py-2 text-xs md:text-sm font-semibold flex items-center justify-between shadow-md z-50">
+    <div class="flex items-center space-x-2">
+      <i data-lucide="shield-alert" class="w-4 h-4 text-amber-300"></i>
+      <span>CRANE ADMIN PORTAL ACTIVE &mdash; Store Management Mode</span>
+    </div>
+    <div class="flex items-center space-x-3">
+      <button onclick="switchTab('admin')" class="bg-white/20 hover:bg-white/30 text-white px-2.5 py-1 rounded text-xs">Open Admin Panel</button>
+      <button onclick="logoutAdmin()" class="bg-white text-red-800 px-2.5 py-1 rounded text-xs font-bold hover:bg-slate-100">Exit Admin</button>
+    </div>
+  </div>
+
+  <!-- HEADER NAVIGATION -->
+  <header class="bg-brand-800 text-white sticky top-0 z-40 shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 sm:h-18">
+        
+        <!-- Brand Logo & Title -->
+        <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('market')">
+          <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center p-1.5 shadow-inner">
+            <!-- Crested Crane Icon SVG -->
+            <svg class="w-full h-full text-brand-800" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="50" cy="50" r="46" fill="#1E3A8A"/>
+              <path d="M50 20C40 20 32 30 36 45C38 52 44 60 48 78L52 78C56 60 62 52 64 45C68 30 60 20 50 20Z" fill="#F59E0B"/>
+              <circle cx="50" cy="28" r="8" fill="#DC2626"/>
+              <circle cx="50" cy="28" r="4" fill="#FFFFFF"/>
+              <path d="M35 32L65 32L50 12Z" fill="#F59E0B"/>
+            </svg>
+          </div>
+          <div>
+            <div class="flex items-center space-x-2">
+              <span class="font-black text-lg tracking-wide text-white">CRANE STORES</span>
+              <span class="bg-brand-gold text-slate-950 text-[10px] font-black px-1.5 py-0.5 rounded shadow-sm">EXPRESS</span>
+            </div>
+            <p class="text-[11px] text-blue-200 hidden sm:block">Uganda Verified Non-Food Marketplace &amp; Same-Day Boda</p>
+          </div>
+        </div>
+
+        <!-- Location Badge (Kampala & Uganda) -->
+        <div class="hidden md:flex items-center space-x-1.5 bg-brand-900/60 px-3 py-1.5 rounded-full border border-blue-400/20 text-xs">
+          <i data-lucide="map-pin" class="w-3.5 h-3.5 text-brand-gold"></i>
+          <span class="font-medium text-slate-200">Delivery:</span>
+          <span class="font-bold text-white">Kampala &amp; Greater Uganda</span>
+        </div>
+
+        <!-- Header Actions -->
+        <div class="flex items-center space-x-2 sm:space-x-4">
+          <!-- Buy Item Header CTA -->
+          <button onclick="openBuyItemModal()" class="bg-brand-gold hover:bg-amber-400 text-slate-950 text-xs sm:text-sm font-extrabold px-3 sm:px-4 py-2 rounded-full shadow-md flex items-center space-x-1.5 transition">
+            <i data-lucide="sparkles" class="w-4 h-4 text-slate-950"></i>
+            <span>+ BUY ITEM</span>
+          </button>
+
+          <!-- Cart Button -->
+          <button onclick="openCartModal()" class="relative p-2 text-white hover:text-brand-gold transition rounded-full hover:bg-white/10" title="Shopping Cart">
+            <i data-lucide="shopping-cart" class="w-6 h-6"></i>
+            <span id="cart-badge-count" class="absolute -top-1 -right-1 bg-brand-gold text-slate-950 font-black text-[11px] w-5 h-5 rounded-full flex items-center justify-center border-2 border-brand-800">0</span>
+          </button>
+
+          <!-- Discreet Admin Portal Key -->
+          <button id="admin-key-btn" onclick="handleAdminPortalClick()" class="p-2 text-blue-300 hover:text-white transition rounded-full hover:bg-white/10" title="Store Owner Portal">
+            <i data-lucide="lock" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN APP NAVIGATION BAR (Customer tabs) -->
+    <nav class="bg-brand-900/90 border-t border-brand-700/50">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="flex items-center space-x-1 sm:space-x-6 overflow-x-auto py-2 custom-scrollbar">
+          <button onclick="switchTab('market')" id="tab-btn-market" class="nav-tab active-tab px-3 py-1.5 rounded-lg text-xs sm:text-sm font-bold flex items-center space-x-1.5 whitespace-nowrap text-white bg-brand-700">
+            <i data-lucide="layout-grid" class="w-4 h-4"></i>
+            <span>Market Catalog</span>
+          </button>
+
+          <button onclick="switchTab('chat')" id="tab-btn-chat" class="nav-tab px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium flex items-center space-x-1.5 whitespace-nowrap text-blue-200 hover:text-white hover:bg-brand-800 transition">
+            <i data-lucide="bot" class="w-4 h-4 text-emerald-400"></i>
+            <span>AI Shopping Assistant</span>
+          </button>
+
+          <button onclick="switchTab('tracking')" id="tab-btn-tracking" class="nav-tab px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium flex items-center space-x-1.5 whitespace-nowrap text-blue-200 hover:text-white hover:bg-brand-800 transition">
+            <i data-lucide="bike" class="w-4 h-4 text-brand-gold"></i>
+            <span>Boda Live Tracking</span>
+          </button>
+
+          <button onclick="switchTab('loyalty')" id="tab-btn-loyalty" class="nav-tab px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium flex items-center space-x-1.5 whitespace-nowrap text-blue-200 hover:text-white hover:bg-brand-800 transition">
+            <i data-lucide="award" class="w-4 h-4 text-amber-300"></i>
+            <span>Rewards &amp; VIP Club</span>
+          </button>
+
+          <!-- Hidden Admin Tab (revealed only when unlocked) -->
+          <button onclick="switchTab('admin')" id="tab-btn-admin" class="nav-tab hidden px-3 py-1.5 rounded-lg text-xs sm:text-sm font-bold flex items-center space-x-1.5 whitespace-nowrap text-red-200 bg-red-900/60 hover:bg-red-800 transition border border-red-500/40">
+            <i data-lucide="shield-check" class="w-4 h-4 text-red-300"></i>
+            <span>Store Admin Panel</span>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8">
+
+    <!-- ========================================================================= -->
+    <!-- TAB 1: MARKET STOREFRONT -->
+    <!-- ========================================================================= -->
+    <div id="tab-content-market" class="tab-pane space-y-6">
+      
+      <!-- HERO PROCUREMENT BANNER -->
+      <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-brand-900 via-brand-800 to-indigo-900 text-white p-6 sm:p-8 shadow-xl border border-blue-700/30">
+        <div class="relative z-10 max-w-2xl space-y-3">
+          <div class="inline-flex items-center space-x-2 bg-brand-gold text-slate-950 text-[11px] font-black px-2.5 py-1 rounded-md">
+            <i data-lucide="badge-check" class="w-3.5 h-3.5 text-slate-950"></i>
+            <span>100% VERIFIED UGANDAN MERCHANTS</span>
+          </div>
+          <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-white">
+            Need something not listed? We source it for you.
+          </h1>
+          <p class="text-blue-100 text-sm sm:text-base leading-relaxed">
+            Order phones, laptops, electronics, car spares, solar gear, and fashion directly. Pay securely via <span class="text-amber-300 font-bold">MTN MoMo (*165#)</span> or <span class="text-rose-300 font-bold">Airtel Money (*185#)</span> with guaranteed same-day delivery.
+          </p>
+          <div class="pt-2 flex flex-wrap gap-3">
+            <button onclick="openBuyItemModal()" class="bg-brand-gold hover:bg-amber-400 text-slate-950 font-bold text-sm px-5 py-2.5 rounded-xl shadow-lg transition flex items-center space-x-2">
+              <i data-lucide="plus-circle" class="w-4 h-4"></i>
+              <span>Post Direct Sourcing Request</span>
+            </button>
+            <button onclick="switchTab('chat')" class="bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold text-sm px-4 py-2.5 rounded-xl transition flex items-center space-x-2">
+              <i data-lucide="bot" class="w-4 h-4 text-emerald-300"></i>
+              <span>Ask AI Price Bot</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Decorative background graphics -->
+        <div class="absolute -right-10 -bottom-10 opacity-20 pointer-events-none hidden md:block">
+          <i data-lucide="shopping-bag" class="w-80 h-80 text-white"></i>
+        </div>
+      </div>
+
+      <!-- SEARCH & BUDGET FILTER BAR -->
+      <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200 space-y-4">
+        
+        <!-- Search Input & Sort Selector -->
+        <div class="flex flex-col md:flex-row gap-3 items-stretch md:items-center justify-between">
+          <div class="relative flex-1">
+            <i data-lucide="search" class="w-5 h-5 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
+            <input 
+              type="text" 
+              id="search-input" 
+              placeholder="Search Samsung, iPhone, solar panels, sneakers, generators, car spares..." 
+              oninput="handleSearchFilterChange()" 
+              class="w-full pl-11 pr-4 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white transition"
+            />
+          </div>
+
+          <div class="flex items-center gap-3">
+            <div class="flex items-center space-x-2 text-xs font-semibold text-slate-600 whitespace-nowrap">
+              <i data-lucide="arrow-up-down" class="w-4 h-4 text-brand-600"></i>
+              <span>Sort:</span>
+            </div>
+            <select id="sort-select" onchange="handleSearchFilterChange()" class="bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-500">
+              <option value="featured">Featured First</option>
+              <option value="price_asc">Price: Low to High</option>
+              <option value="price_desc">Price: High to Low</option>
+              <option value="rating">Highest Rated</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- CATEGORIES SCROLLABLE PILLS -->
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Non-Food Categories</span>
+            <span id="product-count-label" class="text-xs font-bold text-brand-700">12 items loaded</span>
+          </div>
+          <div id="category-pills-container" class="flex gap-2 overflow-x-auto pb-1 custom-scrollbar">
+            <!-- Dynamic category buttons inserted by JS -->
+          </div>
+        </div>
+
+        <!-- BUDGET RANGE SLIDER PANEL (UGX 0 to 5,000,000+) -->
+        <div class="pt-3 border-t border-slate-100">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+            <div class="flex items-center space-x-2">
+              <span class="bg-amber-100 text-amber-900 text-xs font-bold px-2 py-0.5 rounded-full flex items-center space-x-1">
+                <i data-lucide="wallet" class="w-3 h-3 text-amber-700"></i>
+                <span>Budget Filter</span>
+              </span>
+              <span class="text-xs text-slate-500">Filter by price in Uganda Shillings</span>
+            </div>
+            <div class="text-xs font-extrabold text-brand-800 bg-brand-50 px-3 py-1 rounded-lg border border-brand-100">
+              UGX <span id="budget-min-label">0</span> &mdash; <span id="budget-max-label">5,000,000+</span>
+            </div>
+          </div>
+
+          <!-- Range Slider Input -->
+          <div class="px-2 py-1">
+            <input 
+              type="range" 
+              id="budget-slider" 
+              min="50000" 
+              max="5000000" 
+              step="50000" 
+              value="5000000" 
+              oninput="handleBudgetSlider(this.value)"
+              class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-brand-600"
+            />
+          </div>
+
+          <!-- Quick Budget Preset Badges -->
+          <div class="flex flex-wrap gap-1.5 mt-2">
+            <span class="text-[11px] font-semibold text-slate-400 self-center mr-1">Presets:</span>
+            <button onclick="setBudgetPreset(0, 5000000)" class="preset-btn text-[11px] font-bold px-2.5 py-1 rounded-full bg-brand-800 text-white shadow-xs">All</button>
+            <button onclick="setBudgetPreset(0, 100000)" class="preset-btn text-[11px] font-semibold px-2.5 py-1 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700">Under 100k</button>
+            <button onclick="setBudgetPreset(100000, 500000)" class="preset-btn text-[11px] font-semibold px-2.5 py-1 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700">100k - 500k</button>
+            <button onclick="setBudgetPreset(500000, 1500000)" class="preset-btn text-[11px] font-semibold px-2.5 py-1 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700">500k - 1.5M</button>
+            <button onclick="setBudgetPreset(1500000, 3000000)" class="preset-btn text-[11px] font-semibold px-2.5 py-1 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700">1.5M - 3M</button>
+            <button onclick="setBudgetPreset(3000000, 5000000)" class="preset-btn text-[11px] font-semibold px-2.5 py-1 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700">3M+ UGX</button>
+            <button onclick="resetFilters()" class="text-[11px] font-bold text-red-600 hover:text-red-700 ml-auto flex items-center space-x-1">
+              <i data-lucide="rotate-ccw" class="w-3 h-3"></i>
+              <span>Reset</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRODUCTS GRID CONTAINER -->
+      <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+        <!-- Dynamic Product Cards injected here -->
+      </div>
+
+      <!-- EMPTY SEARCH STATE (Hidden by default) -->
+      <div id="no-products-view" class="hidden text-center py-12 bg-white rounded-2xl border border-slate-200">
+        <i data-lucide="package-search" class="w-16 h-16 mx-auto text-slate-300 mb-3"></i>
+        <h3 class="text-base font-bold text-slate-700">No products match your budget or search filter</h3>
+        <p class="text-xs text-slate-500 mt-1 mb-4">Try expanding the budget slider or clear your search terms.</p>
+        <button onclick="resetFilters()" class="bg-brand-700 text-white text-xs font-bold px-4 py-2 rounded-xl hover:bg-brand-800">
+          Reset All Filters
+        </button>
+      </div>
+
+    </div>
+
+
+    <!-- ========================================================================= -->
+    <!-- TAB 2: AI SHOPPING ASSISTANT -->
+    <!-- ========================================================================= -->
+    <div id="tab-content-chat" class="tab-pane hidden max-w-3xl mx-auto space-y-4">
+      
+      <!-- AI Header -->
+      <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex items-center justify-between">
+        <div class="flex items-center space-x-3">
+          <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-brand-700 to-emerald-600 flex items-center justify-center text-white shadow-md">
+            <i data-lucide="bot" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <h2 class="text-base font-extrabold text-slate-900 flex items-center space-x-2">
+              <span>Crane AI Shopping Concierge</span>
+              <span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-full">Active</span>
+            </h2>
+            <p class="text-xs text-slate-500">Ask about phone prices in Kampala, delivery timeframes, or MoMo payment codes.</p>
+          </div>
+        </div>
+        <button onclick="clearChatHistory()" class="text-xs font-medium text-slate-400 hover:text-slate-600 flex items-center space-x-1">
+          <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+          <span>Clear</span>
+        </button>
+      </div>
+
+      <!-- Chat Messages Scrollable Box -->
+      <div id="chat-messages-container" class="bg-white rounded-2xl p-4 sm:p-6 border border-slate-200 shadow-sm h-[480px] overflow-y-auto space-y-4 custom-scrollbar">
+        <!-- Initial Message -->
+        <div class="flex items-start space-x-3">
+          <div class="w-8 h-8 rounded-full bg-brand-700 flex items-center justify-center text-white shrink-0 mt-1">
+            <i data-lucide="bot" class="w-4 h-4"></i>
+          </div>
+          <div class="bg-slate-100 text-slate-800 rounded-2xl rounded-tl-sm p-3.5 max-w-[85%] text-xs sm:text-sm space-y-2">
+            <p class="font-semibold text-brand-900">Oli otya! (Hello!) Welcome to Crane Stores Uganda.</p>
+            <p>I am your smart shopping assistant. Tell me what item you are looking for, your budget in UGX, or ask about MoMo/Airtel checkout steps.</p>
+            <div class="pt-1 flex flex-wrap gap-1.5">
+              <button onclick="quickChatPrompt('What are your best laptops under 1.5 million UGX?')" class="bg-white border border-slate-300 text-brand-700 text-xs px-2.5 py-1 rounded-full hover:bg-brand-50 font-medium">💻 Laptops under 1.5M UGX</button>
+              <button onclick="quickChatPrompt('How do I pay with MTN MoMo (*165#)?')" class="bg-white border border-slate-300 text-brand-700 text-xs px-2.5 py-1 rounded-full hover:bg-brand-50 font-medium">📱 MoMo Payment steps</button>
+              <button onclick="quickChatPrompt('Do you deliver car spare parts to Entebbe?')" class="bg-white border border-slate-300 text-brand-700 text-xs px-2.5 py-1 rounded-full hover:bg-brand-50 font-medium">🛵 Delivery to Entebbe</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chat Input Area -->
+      <form id="chat-input-form" onsubmit="handleSendChatMessage(event)" class="flex gap-2">
+        <input 
+          type="text" 
+          id="chat-input" 
+          placeholder="Ask for recommendations, compare specs, or check delivery rates..." 
+          class="flex-1 bg-white border border-slate-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 shadow-sm"
+          required
+        />
+        <button type="submit" class="bg-brand-800 hover:bg-brand-900 text-white font-bold px-5 py-3 rounded-xl shadow-md flex items-center space-x-1.5 transition">
+          <span>Send</span>
+          <i data-lucide="send" class="w-4 h-4"></i>
+        </button>
+      </form>
+
+    </div>
+
+
+    <!-- ========================================================================= -->
+    <!-- TAB 3: BODA BODA LIVE TRACKING -->
+    <!-- ========================================================================= -->
+    <div id="tab-content-tracking" class="tab-pane hidden max-w-4xl mx-auto space-y-6">
+      
+      <!-- Order Selector / Tracker Card -->
+      <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-6">
+        
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-4">
+          <div>
+            <span class="text-xs font-black uppercase tracking-wider text-brand-goldDark bg-amber-50 px-2.5 py-1 rounded-md">LIVE DISPATCH TELEMETRY</span>
+            <h2 class="text-xl font-black text-slate-900 mt-1">Express Boda Delivery Tracker</h2>
+            <p class="text-xs text-slate-500">Real-time GPS routing across Kampala metropolitan area.</p>
+          </div>
+
+          <div class="flex items-center space-x-2">
+            <label class="text-xs font-bold text-slate-600">Select Order:</label>
+            <select id="tracking-order-select" onchange="handleSelectTrackingOrder(this.value)" class="bg-slate-50 border border-slate-300 rounded-xl px-3 py-1.5 text-xs font-semibold text-slate-800">
+              <!-- Dynamically populated orders -->
+            </select>
+          </div>
+        </div>
+
+        <!-- SIMULATED KAMPALA DISPATCH MAP -->
+        <div class="relative bg-slate-900 rounded-2xl overflow-hidden h-72 border border-slate-800 shadow-inner flex items-center justify-center">
+          <!-- Stylized map grid background -->
+          <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#38bdf8_1px,transparent_1px)] [background-size:16px_16px]"></div>
+          
+          <!-- Road lines vector overlay -->
+          <svg class="absolute inset-0 w-full h-full text-slate-700/50" preserveAspectRatio="none" viewBox="0 0 400 200">
+            <path d="M 20,40 Q 150,120 380,60" fill="none" stroke="currentColor" stroke-width="4" stroke-dasharray="6,6"/>
+            <path d="M 50,180 Q 220,50 360,160" fill="none" stroke="currentColor" stroke-width="3"/>
+            <path d="M 120,10 L 120,190" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M 280,10 L 280,190" fill="none" stroke="currentColor" stroke-width="2"/>
+          </svg>
+
+          <!-- Store Origin Marker -->
+          <div class="absolute left-16 top-16 flex flex-col items-center">
+            <div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center shadow-lg border-2 border-white">
+              <i data-lucide="store" class="w-4 h-4"></i>
+            </div>
+            <span class="text-[10px] font-bold text-blue-200 mt-1 bg-slate-900/80 px-1.5 rounded">Crane Hub (Oasis Mall)</span>
+          </div>
+
+          <!-- Customer Destination Marker -->
+          <div class="absolute right-16 bottom-16 flex flex-col items-center">
+            <div class="w-8 h-8 rounded-full bg-emerald-600 text-white flex items-center justify-center shadow-lg border-2 border-white">
+              <i data-lucide="map-pin" class="w-4 h-4"></i>
+            </div>
+            <span id="tracker-dest-label" class="text-[10px] font-bold text-emerald-300 mt-1 bg-slate-900/80 px-1.5 rounded">Kololo, Kampala</span>
+          </div>
+
+          <!-- Moving Boda Boda Animated Marker -->
+          <div class="absolute flex flex-col items-center pulse-animation" style="left: 50%; top: 45%;">
+            <div class="w-10 h-10 rounded-full bg-amber-400 text-slate-950 flex items-center justify-center shadow-xl border-2 border-slate-900">
+              <i data-lucide="bike" class="w-6 h-6"></i>
+            </div>
+            <span class="text-[10px] font-black text-amber-300 mt-1 bg-slate-900/90 px-2 py-0.5 rounded shadow">Boda En Route 🛵</span>
+          </div>
+
+          <!-- ETA Floating Overlay -->
+          <div class="absolute top-4 right-4 bg-slate-800/90 backdrop-blur border border-slate-700 text-white px-3 py-2 rounded-xl shadow-lg">
+            <div class="text-[10px] text-slate-400">Estimated Arrival</div>
+            <div class="text-sm font-extrabold text-amber-400">22 - 35 Minutes</div>
+          </div>
+        </div>
+
+        <!-- Rider Profile & Dispatch Status Steps -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+          
+          <!-- Assigned Rider Card -->
+          <div class="bg-slate-50 rounded-xl p-4 border border-slate-200 space-y-3">
+            <span class="text-[11px] font-bold text-slate-400 uppercase">Assigned Express Rider</span>
+            <div class="flex items-center space-x-3">
+              <div class="w-12 h-12 rounded-full bg-amber-200 text-amber-900 flex items-center justify-center font-black text-lg border-2 border-amber-400">
+                KJ
+              </div>
+              <div>
+                <h4 id="tracker-rider-name" class="font-extrabold text-sm text-slate-900">Kato Juma</h4>
+                <p id="tracker-rider-plate" class="text-xs text-brand-700 font-bold">Bajaj Boxer &bull; UES 482K</p>
+                <div class="flex items-center text-[11px] text-amber-600 font-semibold mt-0.5">
+                  <i data-lucide="star" class="w-3 h-3 fill-current text-amber-500 mr-1"></i>
+                  <span>4.9 (420+ deliveries)</span>
+                </div>
+              </div>
+            </div>
+            <a href="tel:+256770123456" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold py-2 rounded-lg flex items-center justify-center space-x-1.5 transition">
+              <i data-lucide="phone-call" class="w-3.5 h-3.5"></i>
+              <span>Call Rider (+256)</span>
+            </a>
+          </div>
+
+          <!-- Tracking Milestones -->
+          <div class="md:col-span-2 space-y-3">
+            <span class="text-[11px] font-bold text-slate-400 uppercase">Order Progress</span>
+            <div class="space-y-2.5">
+              <div class="flex items-center space-x-3 text-xs">
+                <div class="w-6 h-6 rounded-full bg-emerald-500 text-white flex items-center justify-center shrink-0">
+                  <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                </div>
+                <div class="flex-1">
+                  <div class="font-bold text-slate-900">Order Confirmed &amp; Paid with Mobile Money</div>
+                  <div class="text-[10px] text-slate-500">Merchant verified and packed item.</div>
+                </div>
+              </div>
+
+              <div class="flex items-center space-x-3 text-xs">
+                <div class="w-6 h-6 rounded-full bg-emerald-500 text-white flex items-center justify-center shrink-0">
+                  <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                </div>
+                <div class="flex-1">
+                  <div class="font-bold text-slate-900">Package Picked up from Oasis Mall Hub</div>
+                  <div class="text-[10px] text-slate-500">Kato Juma scanned package barcode.</div>
+                </div>
+              </div>
+
+              <div class="flex items-center space-x-3 text-xs">
+                <div class="w-6 h-6 rounded-full bg-amber-500 text-slate-950 flex items-center justify-center shrink-0 animate-pulse">
+                  <i data-lucide="bike" class="w-3.5 h-3.5"></i>
+                </div>
+                <div class="flex-1">
+                  <div class="font-bold text-amber-700">Out for Same-Day Delivery</div>
+                  <div class="text-[10px] text-slate-500">Rider navigating through Yusuf Lule Road.</div>
+                </div>
+              </div>
+
+              <div class="flex items-center space-x-3 text-xs opacity-50">
+                <div class="w-6 h-6 rounded-full bg-slate-200 text-slate-400 flex items-center justify-center shrink-0">
+                  <i data-lucide="package-check" class="w-3.5 h-3.5"></i>
+                </div>
+                <div class="flex-1">
+                  <div class="font-bold text-slate-600">Delivered &amp; Receipt Confirmed</div>
+                  <div class="text-[10px] text-slate-400">Customer signs off on receipt.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- ========================================================================= -->
+    <!-- TAB 4: REWARDS & CRANE CLUB VIP -->
+    <!-- ========================================================================= -->
+    <div id="tab-content-loyalty" class="tab-pane hidden max-w-4xl mx-auto space-y-6">
+      
+      <!-- VIP Status Hero Card -->
+      <div class="bg-gradient-to-r from-amber-600 via-amber-500 to-yellow-500 text-slate-950 rounded-2xl p-6 sm:p-8 shadow-xl relative overflow-hidden">
+        <div class="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+          <div class="space-y-2">
+            <div class="inline-flex items-center space-x-1.5 bg-slate-950 text-amber-400 text-[10px] font-black px-2.5 py-1 rounded-full uppercase">
+              <i data-lucide="crown" class="w-3 h-3"></i>
+              <span>CRANE CLUB VIP &bull; GOLD TIER</span>
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-black">Your Rewards &amp; Cash-back</h2>
+            <p class="text-xs sm:text-sm text-slate-900 font-medium max-w-md">
+              Earn 1 Crane Point for every UGX 1,000 spent. Redeem points directly for instant cash discounts on your next checkout!
+            </p>
+          </div>
+
+          <div class="bg-slate-950/90 text-white p-4 rounded-2xl border border-amber-300/30 text-center sm:text-right min-w-[180px]">
+            <div class="text-xs text-amber-300 font-semibold uppercase">Current Balance</div>
+            <div id="loyalty-points-display" class="text-3xl font-black text-amber-400 my-0.5">1,250</div>
+            <div class="text-[11px] text-slate-300">Worth <span class="text-white font-bold">UGX 12,500</span> Discount</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LUCKY WHEEL & ACTIVE VOUCHERS -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <!-- Lucky Spin Game Card -->
+        <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm text-center space-y-4">
+          <div class="inline-flex p-3 rounded-full bg-amber-100 text-amber-700">
+            <i data-lucide="sparkles" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <h3 class="text-lg font-black text-slate-900">Daily Uganda Lucky Spin</h3>
+            <p class="text-xs text-slate-500">Spin daily to win free delivery vouchers or up to 500 bonus points.</p>
+          </div>
+
+          <!-- Wheel graphic container -->
+          <div class="relative w-44 h-44 mx-auto my-3 flex items-center justify-center">
+            <div id="wheel-circle" class="w-full h-full rounded-full border-4 border-amber-400 bg-gradient-to-tr from-brand-700 via-amber-500 to-rose-600 shadow-lg flex items-center justify-center transition-all duration-1000">
+              <span class="text-white font-black text-xs uppercase text-center px-4">WIN DISCOUNTS</span>
+            </div>
+            <div class="absolute -top-2 w-4 h-6 bg-red-600 clip-triangle shadow"></div>
+          </div>
+
+          <button id="spin-btn" onclick="spinLuckyWheel()" class="w-full bg-brand-800 hover:bg-brand-900 text-white font-bold py-2.5 rounded-xl shadow transition text-sm">
+            Spin Free Today 🎡
+          </button>
+        </div>
+
+        <!-- Available Vouchers Card -->
+        <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-4">
+          <div class="flex items-center justify-between">
+            <h3 class="text-base font-black text-slate-900 flex items-center space-x-2">
+              <i data-lucide="ticket" class="w-4 h-4 text-brand-600"></i>
+              <span>Active Discount Coupons</span>
+            </h3>
+            <span class="text-xs font-bold text-brand-600">3 Available</span>
+          </div>
+
+          <div class="space-y-3">
+            <div class="border border-dashed border-amber-400 bg-amber-50/50 rounded-xl p-3 flex items-center justify-between">
+              <div>
+                <span class="text-xs font-black text-slate-900">CRANE5K</span>
+                <p class="text-[11px] text-slate-600">UGX 5,000 off any order above 50,000 UGX.</p>
+              </div>
+              <button onclick="copyCouponCode('CRANE5K')" class="bg-amber-400 hover:bg-amber-500 text-slate-950 text-xs font-bold px-3 py-1.5 rounded-lg transition">Copy</button>
+            </div>
+
+            <div class="border border-dashed border-blue-400 bg-blue-50/50 rounded-xl p-3 flex items-center justify-between">
+              <div>
+                <span class="text-xs font-black text-slate-900">BODAFREE</span>
+                <p class="text-[11px] text-slate-600">Free Boda delivery on orders above 200,000 UGX.</p>
+              </div>
+              <button onclick="copyCouponCode('BODAFREE')" class="bg-brand-700 hover:bg-brand-800 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition">Copy</button>
+            </div>
+
+            <div class="border border-dashed border-emerald-400 bg-emerald-50/50 rounded-xl p-3 flex items-center justify-between">
+              <div>
+                <span class="text-xs font-black text-slate-900">VIPGOLD</span>
+                <p class="text-[11px] text-slate-600">10% off all Electronics and Mobile Phones.</p>
+              </div>
+              <button onclick="copyCouponCode('VIPGOLD')" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition">Copy</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- ========================================================================= -->
+    <!-- TAB 5: ADMIN DASHBOARD (Protected by Master PIN) -->
+    <!-- ========================================================================= -->
+    <div id="tab-content-admin" class="tab-pane hidden space-y-6">
+      
+      <!-- Admin Header Bar -->
+      <div class="bg-slate-900 text-white rounded-2xl p-6 shadow-md flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <div class="inline-flex items-center space-x-1.5 bg-red-600 text-white text-[10px] font-black px-2.5 py-0.5 rounded uppercase">
+            <i data-lucide="shield" class="w-3 h-3"></i>
+            <span>AUTHENTICATED STORE ADMINISTRATOR</span>
+          </div>
+          <h2 class="text-2xl font-black text-white mt-1">Crane Stores Master Control Panel</h2>
+          <p class="text-xs text-slate-400">Manage catalog items, track revenue, dispatch boda orders, and review user buy requests.</p>
+        </div>
+
+        <div class="flex items-center space-x-3">
+          <button onclick="openAddProductModal()" class="bg-brand-gold hover:bg-amber-400 text-slate-950 font-extrabold text-xs px-4 py-2.5 rounded-xl shadow flex items-center space-x-1.5 transition">
+            <i data-lucide="plus" class="w-4 h-4"></i>
+            <span>+ Add New Product</span>
+          </button>
+          <button onclick="exportDatabaseJSON()" class="bg-slate-800 hover:bg-slate-700 text-white text-xs font-semibold px-3 py-2.5 rounded-xl border border-slate-700 transition" title="Export Backup JSON">
+            <i data-lucide="download" class="w-4 h-4"></i>
+          </button>
+          <button onclick="logoutAdmin()" class="bg-red-700 hover:bg-red-800 text-white text-xs font-bold px-3.5 py-2.5 rounded-xl transition">
+            Lock Portal
+          </button>
+        </div>
+      </div>
+
+      <!-- ANALYTICS CARDS ROW -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-2">
+          <div class="flex items-center justify-between text-slate-400 text-xs font-bold">
+            <span>TOTAL STORE REVENUE</span>
+            <i data-lucide="banknote" class="w-4 h-4 text-emerald-600"></i>
+          </div>
+          <div id="admin-total-revenue" class="text-2xl font-black text-slate-900">UGX 14,850,000</div>
+          <div class="text-[11px] text-emerald-600 font-semibold flex items-center space-x-1">
+            <i data-lucide="trending-up" class="w-3 h-3"></i>
+            <span>+18.4% this month via MoMo</span>
+          </div>
+        </div>
+
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-2">
+          <div class="flex items-center justify-between text-slate-400 text-xs font-bold">
+            <span>ACTIVE PRODUCTS</span>
+            <i data-lucide="boxes" class="w-4 h-4 text-brand-600"></i>
+          </div>
+          <div id="admin-products-count" class="text-2xl font-black text-slate-900">12</div>
+          <div class="text-[11px] text-slate-500 font-medium">All non-food categories</div>
+        </div>
+
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-2">
+          <div class="flex items-center justify-between text-slate-400 text-xs font-bold">
+            <span>TOTAL COMPLETED ORDERS</span>
+            <i data-lucide="shopping-bag" class="w-4 h-4 text-amber-500"></i>
+          </div>
+          <div id="admin-orders-count" class="text-2xl font-black text-slate-900">38</div>
+          <div class="text-[11px] text-brand-600 font-semibold">100% same-day SLA</div>
+        </div>
+
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-2">
+          <div class="flex items-center justify-between text-slate-400 text-xs font-bold">
+            <span>DIRECT BUY REQUESTS</span>
+            <i data-lucide="inbox" class="w-4 h-4 text-indigo-500"></i>
+          </div>
+          <div id="admin-sourcing-count" class="text-2xl font-black text-slate-900">4</div>
+          <div class="text-[11px] text-amber-600 font-semibold">Customer Sourcing Inquiries</div>
+        </div>
+
+      </div>
+
+      <!-- INVENTORY MANAGEMENT TABLE -->
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden space-y-4 p-5">
+        <div class="flex items-center justify-between">
+          <div>
+            <h3 class="text-base font-black text-slate-900">Inventory &amp; Product Pricing</h3>
+            <p class="text-xs text-slate-500">Manage real-time catalog items, discounts, and in-stock toggles.</p>
+          </div>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-slate-50 text-slate-600 uppercase font-black tracking-wider border-y border-slate-200">
+              <tr>
+                <th class="py-3 px-4">Item Name</th>
+                <th class="py-3 px-4">Category</th>
+                <th class="py-3 px-4">Condition</th>
+                <th class="py-3 px-4">Price (UGX)</th>
+                <th class="py-3 px-4">Stock Status</th>
+                <th class="py-3 px-4 text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="admin-inventory-table-body" class="divide-y divide-slate-100">
+              <!-- Dynamic inventory rows -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- DIRECT SOURCING REQUESTS TABLE -->
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden space-y-4 p-5">
+        <div class="flex items-center justify-between">
+          <div>
+            <h3 class="text-base font-black text-slate-900">Direct Customer Sourcing Requests</h3>
+            <p class="text-xs text-slate-500">Submitted by customers via the (+ BUY ITEM) portal.</p>
+          </div>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-slate-50 text-slate-600 uppercase font-black tracking-wider border-y border-slate-200">
+              <tr>
+                <th class="py-3 px-4">Requested Item</th>
+                <th class="py-3 px-4">Customer Contact</th>
+                <th class="py-3 px-4">Budget Range</th>
+                <th class="py-3 px-4">Destination</th>
+                <th class="py-3 px-4">Status</th>
+                <th class="py-3 px-4 text-right">Action</th>
+              </tr>
+            </thead>
+            <tbody id="admin-sourcing-table-body" class="divide-y divide-slate-100">
+              <!-- Dynamic sourcing rows -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <!-- ========================================================================= -->
+  <!-- MODAL 1: SHOPPING CART & CHECKOUT WITH MTN/AIRTEL MOMO -->
+  <!-- ========================================================================= -->
+  <div id="cart-modal" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] flex flex-col shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-200">
+      
+      <!-- Cart Header -->
+      <div class="p-5 bg-brand-800 text-white flex items-center justify-between">
+        <div class="flex items-center space-x-2">
+          <i data-lucide="shopping-bag" class="w-5 h-5 text-brand-gold"></i>
+          <h3 class="font-extrabold text-base">Your Cart &amp; Checkout</h3>
+        </div>
+        <button onclick="closeCartModal()" class="p-1 text-white/80 hover:text-white rounded-full hover:bg-white/10">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Cart Content (Scrollable) -->
+      <div class="p-6 overflow-y-auto flex-1 space-y-6 custom-scrollbar">
+        
+        <!-- Cart Items List -->
+        <div id="cart-items-container" class="space-y-3 divide-y divide-slate-100">
+          <!-- Dynamic Cart Items -->
+        </div>
+
+        <!-- Empty Cart Notice -->
+        <div id="cart-empty-notice" class="hidden text-center py-8">
+          <i data-lucide="shopping-cart" class="w-12 h-12 text-slate-300 mx-auto mb-2"></i>
+          <p class="text-sm font-bold text-slate-600">Your shopping cart is empty</p>
+          <p class="text-xs text-slate-400 mt-0.5">Explore our non-food catalog and click BUY to add items.</p>
+        </div>
+
+        <!-- Checkout Form Section (when items exist) -->
+        <div id="checkout-form-section" class="space-y-4 pt-4 border-t border-slate-200">
+          <h4 class="text-xs font-black text-slate-800 uppercase tracking-wider">1. Delivery Destination</h4>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label class="text-[11px] font-bold text-slate-600 block mb-1">Customer Full Name *</label>
+              <input type="text" id="checkout-name" placeholder="e.g. Sempala Ronald" value="Sempala Ronald" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-xl text-xs focus:ring-2 focus:ring-brand-500 focus:outline-none" required />
+            </div>
+            <div>
+              <label class="text-[11px] font-bold text-slate-600 block mb-1">Ugandan Phone Number *</label>
+              <input type="tel" id="checkout-phone" placeholder="0770123456 or 0750123456" value="0772849102" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-xl text-xs focus:ring-2 focus:ring-brand-500 focus:outline-none" required />
+            </div>
+            <div class="sm:col-span-2">
+              <label class="text-[11px] font-bold text-slate-600 block mb-1">Street Address &amp; Landmark *</label>
+              <input type="text" id="checkout-address" placeholder="e.g. Bukoto Street, Plot 14, Near Total Energies" value="Bukoto Street, Plot 14" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-xl text-xs focus:ring-2 focus:ring-brand-500 focus:outline-none" required />
+            </div>
+            <div>
+              <label class="text-[11px] font-bold text-slate-600 block mb-1">City / Region *</label>
+              <select id="checkout-city" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-xl text-xs focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                <option value="Kampala Central">Kampala Central</option>
+                <option value="Nakawa / Ntinda / Bugolobi">Nakawa / Ntinda / Bugolobi</option>
+                <option value="Makindye / Kansanga / Ggaba">Makindye / Kansanga / Ggaba</option>
+                <option value="Rubaga / Mengo">Rubaga / Mengo</option>
+                <option value="Kawempe / Kisaasi">Kawempe / Kisaasi</option>
+                <option value="Entebbe">Entebbe</option>
+                <option value="Mukono / Jinja">Mukono / Jinja</option>
+              </select>
+            </div>
+            <div>
+              <label class="text-[11px] font-bold text-slate-600 block mb-1">Delivery Method</label>
+              <select id="checkout-delivery-method" onchange="updateCartTotals()" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-xl text-xs focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                <option value="5000">Express Boda Delivery (UGX 5,000)</option>
+                <option value="12000">Heavy Van Delivery (UGX 12,000)</option>
+                <option value="0">Self Pickup - Oasis Mall Hub (UGX 0)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Payment Methods Selection -->
+          <h4 class="text-xs font-black text-slate-800 uppercase tracking-wider pt-2">2. Payment Method</h4>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+            <!-- MTN MoMo -->
+            <label class="payment-method-card border-2 border-amber-400 bg-amber-50/50 rounded-xl p-3 text-center cursor-pointer flex flex-col items-center justify-center space-y-1">
+              <input type="radio" name="payment_method" value="MTN_MOMO" checked class="hidden" onchange="handlePaymentMethodChange(this.value)">
+              <div class="w-7 h-7 rounded-full bg-amber-400 text-slate-950 flex items-center justify-center font-black text-xs shadow-xs">M</div>
+              <span class="font-extrabold text-xs text-slate-900">MTN MoMo</span>
+              <span class="text-[10px] text-slate-500">*165# Prompt</span>
+            </label>
+
+            <!-- Airtel Money -->
+            <label class="payment-method-card border-2 border-slate-200 rounded-xl p-3 text-center cursor-pointer flex flex-col items-center justify-center space-y-1 hover:border-red-400">
+              <input type="radio" name="payment_method" value="AIRTEL_MONEY" class="hidden" onchange="handlePaymentMethodChange(this.value)">
+              <div class="w-7 h-7 rounded-full bg-red-600 text-white flex items-center justify-center font-black text-xs shadow-xs">A</div>
+              <span class="font-extrabold text-xs text-slate-900">Airtel Money</span>
+              <span class="text-[10px] text-slate-500">*185# Prompt</span>
+            </label>
+
+            <!-- Cash on Delivery -->
+            <label class="payment-method-card border-2 border-slate-200 rounded-xl p-3 text-center cursor-pointer flex flex-col items-center justify-center space-y-1 hover:border-emerald-400">
+              <input type="radio" name="payment_method" value="COD" class="hidden" onchange="handlePaymentMethodChange(this.value)">
+              <div class="w-7 h-7 rounded-full bg-emerald-600 text-white flex items-center justify-center font-black text-xs shadow-xs">
+                <i data-lucide="banknote" class="w-3.5 h-3.5"></i>
+              </div>
+              <span class="font-extrabold text-xs text-slate-900">Cash on Del.</span>
+              <span class="text-[10px] text-slate-500">Pay on Arrival</span>
+            </label>
+
+            <!-- Visa / Mastercard -->
+            <label class="payment-method-card border-2 border-slate-200 rounded-xl p-3 text-center cursor-pointer flex flex-col items-center justify-center space-y-1 hover:border-blue-400">
+              <input type="radio" name="payment_method" value="CARD" class="hidden" onchange="handlePaymentMethodChange(this.value)">
+              <div class="w-7 h-7 rounded-full bg-brand-800 text-white flex items-center justify-center font-black text-xs shadow-xs">
+                <i data-lucide="credit-card" class="w-3.5 h-3.5"></i>
+              </div>
+              <span class="font-extrabold text-xs text-slate-900">Debit Card</span>
+              <span class="text-[10px] text-slate-500">Visa/Master</span>
+            </label>
+          </div>
+
+          <!-- Coupon Code Input -->
+          <div class="flex gap-2 pt-2">
+            <input type="text" id="cart-coupon-input" placeholder="Promo code (e.g. CRANE5K)" class="flex-1 px-3 py-2 bg-slate-50 border border-slate-300 rounded-xl text-xs uppercase font-bold focus:ring-2 focus:ring-brand-500 focus:outline-none" />
+            <button onclick="applyCartCoupon()" class="bg-slate-800 hover:bg-slate-900 text-white text-xs font-bold px-4 py-2 rounded-xl">Apply</button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Cart Footer / Total and Submit -->
+      <div class="p-5 bg-slate-50 border-t border-slate-200 space-y-3">
+        <div class="space-y-1 text-xs">
+          <div class="flex justify-between text-slate-600">
+            <span>Subtotal:</span>
+            <span id="cart-subtotal" class="font-semibold text-slate-900">UGX 0</span>
+          </div>
+          <div class="flex justify-between text-slate-600">
+            <span>Delivery Fee:</span>
+            <span id="cart-delivery-fee" class="font-semibold text-slate-900">UGX 5,000</span>
+          </div>
+          <div id="cart-discount-row" class="flex justify-between text-emerald-600 hidden">
+            <span>Discount Coupon:</span>
+            <span id="cart-discount-amount" class="font-bold">-UGX 0</span>
+          </div>
+          <div class="flex justify-between text-sm font-extrabold text-brand-900 pt-1 border-t border-slate-200">
+            <span>Total Payable:</span>
+            <span id="cart-grand-total" class="text-base text-brand-800">UGX 0</span>
+          </div>
+        </div>
+
+        <button id="checkout-submit-btn" onclick="initiatePaymentCheckout()" class="w-full bg-brand-800 hover:bg-brand-900 text-white font-extrabold py-3 rounded-2xl shadow-lg flex items-center justify-center space-x-2 transition text-sm">
+          <i data-lucide="lock" class="w-4 h-4 text-brand-gold"></i>
+          <span id="checkout-submit-label">Pay Now &amp; Dispatch Boda</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ========================================================================= -->
+  <!-- MODAL 2: USSD MOBILE MONEY PIN AUTHORIZATION SIMULATOR -->
+  <!-- ========================================================================= -->
+  <div id="ussd-pin-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-slate-900 text-white rounded-3xl max-w-sm w-full p-6 shadow-2xl border border-slate-700 text-center space-y-4">
+      
+      <!-- Network Badge -->
+      <div id="ussd-network-badge" class="inline-block bg-amber-400 text-slate-950 text-xs font-black px-3 py-1 rounded-full uppercase">
+        MTN MoMo Pay (*165#)
+      </div>
+
+      <h3 class="text-lg font-black text-white">Authorize Payment</h3>
+      <p class="text-xs text-slate-300">
+        Do you approve payment of <span id="ussd-amount-label" class="text-amber-400 font-extrabold">UGX 0</span> to <span class="text-white font-bold">Crane Stores Uganda</span> from phone <span id="ussd-phone-label" class="text-white font-bold">0772...</span>?
+      </p>
+
+      <div>
+        <label class="text-[11px] font-bold text-slate-400 block mb-1 text-left">Enter 4-Digit Mobile Money PIN:</label>
+        <input 
+          type="password" 
+          id="ussd-pin-input" 
+          maxlength="5" 
+          placeholder="&bull;&bull;&bull;&bull;" 
+          class="w-full text-center tracking-widest text-xl font-black bg-slate-800 border border-slate-600 rounded-xl py-2.5 text-white focus:outline-none focus:ring-2 focus:ring-amber-400" 
+        />
+      </div>
+
+      <div class="flex gap-2 pt-2">
+        <button onclick="closeUssdModal()" class="flex-1 bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold py-2.5 rounded-xl text-xs">
+          Cancel
+        </button>
+        <button onclick="confirmUssdPayment()" class="flex-1 bg-amber-400 hover:bg-amber-500 text-slate-950 font-black py-2.5 rounded-xl text-xs shadow-lg">
+          Confirm PIN
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ========================================================================= -->
+  <!-- MODAL 3: DIRECT BUY / SOURCING REQUEST MODAL -->
+  <!-- ========================================================================= -->
+  <div id="buy-request-modal" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-slate-200 space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center space-x-2">
+          <div class="w-8 h-8 rounded-full bg-brand-gold text-slate-950 flex items-center justify-center font-bold">
+            <i data-lucide="sparkles" class="w-4 h-4"></i>
+          </div>
+          <h3 class="font-extrabold text-base text-slate-900">Post Direct Sourcing Request</h3>
+        </div>
+        <button onclick="closeBuyItemModal()" class="p-1 text-slate-400 hover:text-slate-600">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <p class="text-xs text-slate-500">
+        Can't find a specific device, car part, or electronics model? Our procurement team will source verified stock across Uganda and call you within 15 minutes.
+      </p>
+
+      <form onsubmit="handleDirectBuySubmit(event)" class="space-y-3">
+        <div>
+          <label class="text-[11px] font-bold text-slate-700 block mb-1">Item Name / Model Specs *</label>
+          <input type="text" id="buy-req-title" placeholder="e.g. iPhone 15 Pro Max 256GB Natural Titanium" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-xl text-xs focus:ring-2 focus:ring-brand-500 focus:outline-none" required />
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="text-[11px] font-bold text-slate-700 block mb-1">Category</label>
+            <select id="buy-req-category" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-xl text-xs">
+              <option value="Phones & Tablets">Phones &amp; Tablets</option>
+              <option value="Laptops & Computers">Laptops &amp; Computers</option>
+              <option value="Electronics & TVs">Electronics &amp; TVs</option>
+              <option value="Vehicles & Spare Parts">Vehicles &amp; Spare Parts</option>
+              <option value="Solar & Hardware">Solar &amp; Hardware</option>
+              <option value="Fashion & Shoes">Fashion &amp; Shoes</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-[11px] font-bold text-slate-700 block mb-1">Max Budget (UGX) *</label>
+            <input type="number" id="buy-req-budget" placeholder="e.g. 3500000" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-xl text-xs focus:ring-2 focus:ring-brand-500 focus:outline-none" required />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="text-[11px] font-bold text-slate-700 block mb-1">Your Name *</label>
+            <input type="text" id="buy-req-name" placeholder="Full name" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-xl text-xs focus:ring-2 focus:ring-brand-500 focus:outline-none" required />
+          </div>
+          <div>
+            <label class="text-[11px] font-bold text-slate-700 block mb-1">Phone Number *</label>
+            <input type="tel" id="buy-req-phone" placeholder="0770..." class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-xl text-xs focus:ring-2 focus:ring-brand-500 focus:outline-none" required />
+          </div>
+        </div>
+
+        <div>
+          <label class="text-[11px] font-bold text-slate-700 block mb-1">Delivery City/Town</label>
+          <input type="text" id="buy-req-location" placeholder="e.g. Kampala, Gulu, Mbarara" value="Kampala" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-xl text-xs focus:ring-2 focus:ring-brand-500 focus:outline-none" required />
+        </div>
+
+        <button type="submit" class="w-full bg-brand-gold hover:bg-amber-400 text-slate-950 font-black py-2.5 rounded-xl shadow transition text-xs flex items-center justify-center space-x-1.5 mt-4">
+          <i data-lucide="send" class="w-4 h-4"></i>
+          <span>Submit Sourcing Request</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+
+  <!-- ========================================================================= -->
+  <!-- MODAL 4: ADMIN MASTER PIN LOGIN DIALOG -->
+  <!-- ========================================================================= -->
+  <div id="admin-pin-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-sm w-full p-6 shadow-2xl border border-slate-200 text-center space-y-4">
+      
+      <div class="w-12 h-12 rounded-full bg-red-100 text-red-700 flex items-center justify-center mx-auto">
+        <i data-lucide="shield-check" class="w-6 h-6"></i>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-black text-slate-900">Store Management Access</h3>
+        <p class="text-xs text-slate-500 mt-1">Enter Master Admin PIN to unlock inventory controls and sales analytics.</p>
+      </div>
+
+      <div>
+        <input 
+          type="password" 
+          id="admin-pin-input" 
+          maxlength="6" 
+          placeholder="PIN (Default: 2560)" 
+          class="w-full text-center tracking-widest text-lg font-bold bg-slate-50 border border-slate-300 rounded-xl py-2.5 text-slate-900 focus:outline-none focus:ring-2 focus:ring-red-600" 
+        />
+        <p id="admin-pin-error" class="text-xs text-red-600 font-semibold mt-1 hidden">Invalid PIN. Try 2560 or 1234.</p>
+      </div>
+
+      <div class="flex gap-2">
+        <button onclick="closeAdminPinModal()" class="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-2.5 rounded-xl text-xs">
+          Cancel
+        </button>
+        <button onclick="verifyAdminPinSubmit()" class="flex-1 bg-red-700 hover:bg-red-800 text-white font-bold py-2.5 rounded-xl text-xs shadow">
+          Unlock Portal
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ========================================================================= -->
+  <!-- MODAL 5: ADD / EDIT PRODUCT MODAL (Admin) -->
+  <!-- ========================================================================= -->
+  <div id="add-product-modal" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-200 space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <h3 class="font-extrabold text-base text-slate-900">Add New Catalog Product</h3>
+        <button onclick="closeAddProductModal()" class="p-1 text-slate-400 hover:text-slate-600">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <form onsubmit="handleSaveProductSubmit(event)" class="space-y-3">
+        <div>
+          <label class="text-[11px] font-bold text-slate-700 block mb-1">Product Title *</label>
+          <input type="text" id="prod-name" placeholder="e.g. Sony WH-1000XM5 Wireless Headphones" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-xl text-xs focus:ring-2 focus:ring-brand-500 focus:outline-none" required />
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="text-[11px] font-bold text-slate-700 block mb-1">Category</label>
+            <select id="prod-category" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-xl text-xs">
+              <option value="Phones & Tablets">Phones &amp; Tablets</option>
+              <option value="Laptops & Computers">Laptops &amp; Computers</option>
+              <option value="Electronics & TVs">Electronics &amp; TVs</option>
+              <option value="Vehicles & Spare Parts">Vehicles &amp; Spare Parts</option>
+              <option value="Solar & Hardware">Solar &amp; Hardware</option>
+              <option value="Fashion & Shoes">Fashion &amp; Shoes</option>
+              <option value="Home & Furniture">Home &amp; Furniture</option>
+              <option value="Sports & Fitness">Sports &amp; Fitness</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-[11px] font-bold text-slate-700 block mb-1">Condition</label>
+            <select id="prod-condition" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-xl text-xs">
+              <option value="Brand New (Boxed)">Brand New (Boxed)</option>
+              <option value="Refurbished Grade A">Refurbished Grade A</option>
+              <option value="Used / Excellent">Used / Excellent</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="text-[11px] font-bold text-slate-700 block mb-1">Price (UGX) *</label>
+            <input type="number" id="prod-price" placeholder="e.g. 1250000" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-xl text-xs focus:ring-2 focus:ring-brand-500 focus:outline-none" required />
+          </div>
+          <div>
+            <label class="text-[11px] font-bold text-slate-700 block mb-1">Discount %</label>
+            <input type="number" id="prod-discount" placeholder="e.g. 10" value="0" min="0" max="90" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-xl text-xs focus:ring-2 focus:ring-brand-500 focus:outline-none" />
+          </div>
+        </div>
+
+        <div>
+          <label class="text-[11px] font-bold text-slate-700 block mb-1">Image Keyword / URL</label>
+          <input type="text" id="prod-image" placeholder="e.g. phone, laptop, headphones, solar" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-xl text-xs focus:ring-2 focus:ring-brand-500 focus:outline-none" />
+        </div>
+
+        <button type="submit" class="w-full bg-brand-800 hover:bg-brand-900 text-white font-extrabold py-2.5 rounded-xl shadow transition text-xs mt-2">
+          Save Product to Database
+        </button>
+      </form>
+    </div>
+  </div>
+
+
+  <!-- TOAST NOTIFICATION POPUP -->
+  <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col space-y-2 pointer-events-none"></div>
+
+
+  <!-- JAVASCRIPT LOGIC & EMBEDDED LOCALSTORAGE DATABASE -->
+  <script>
+    // =========================================================================
+    // 1. EMBEDDED DATABASE SEED DATA (Non-Food Catalog)
+    // =========================================================================
+    const INITIAL_PRODUCTS = [
+      {
+        id: "prod_1",
+        name: "Samsung Galaxy S24 Ultra (512GB, Titanium Black)",
+        category: "Phones & Tablets",
+        condition: "Brand New (Boxed)",
+        priceUgx: 4850000,
+        discountPercent: 8,
+        rating: 4.9,
+        originRegion: "Kampala Central (Simba Telecom)",
+        icon: "smartphone",
+        image: "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=500&q=80",
+        inStock: true
+      },
+      {
+        id: "prod_2",
+        name: "Apple iPhone 15 Pro (256GB, Natural Titanium)",
+        category: "Phones & Tablets",
+        condition: "Brand New (Boxed)",
+        priceUgx: 4200000,
+        discountPercent: 5,
+        rating: 4.9,
+        originRegion: "Garden City, Kampala",
+        icon: "smartphone",
+        image: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=500&q=80",
+        inStock: true
+      },
+      {
+        id: "prod_3",
+        name: "HP EliteBook 840 G8 (Core i7, 16GB RAM, 512GB SSD)",
+        category: "Laptops & Computers",
+        condition: "Refurbished Grade A",
+        priceUgx: 1850000,
+        discountPercent: 12,
+        rating: 4.8,
+        originRegion: "Kampala Boulevard",
+        icon: "laptop",
+        image: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=500&q=80",
+        inStock: true
+      },
+      {
+        id: "prod_4",
+        name: "Dell XPS 13 OLED (16GB RAM, 1TB SSD, 4K Touch)",
+        category: "Laptops & Computers",
+        condition: "Brand New (Boxed)",
+        priceUgx: 3950000,
+        discountPercent: 0,
+        rating: 4.9,
+        originRegion: "Acacia Mall, Kisementi",
+        icon: "laptop",
+        image: "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=500&q=80",
+        inStock: true
+      },
+      {
+        id: "prod_5",
+        name: "LG 55-inch 4K UHD Smart TV (WebOS & HDR10)",
+        category: "Electronics & TVs",
+        condition: "Brand New (Boxed)",
+        priceUgx: 2100000,
+        discountPercent: 15,
+        rating: 4.7,
+        originRegion: "Lugogo Mall (LG Centre)",
+        icon: "tv",
+        image: "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=500&q=80",
+        inStock: true
+      },
+      {
+        id: "prod_6",
+        name: "Sony WH-1000XM5 Active Noise Cancelling Headphones",
+        category: "Electronics & TVs",
+        condition: "Brand New (Boxed)",
+        priceUgx: 1350000,
+        discountPercent: 10,
+        rating: 4.9,
+        originRegion: "Kampala Central",
+        icon: "headphones",
+        image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&q=80",
+        inStock: true
+      },
+      {
+        id: "prod_7",
+        name: "Toyota Premio / Fielder Front Shock Absorbers (Pair)",
+        category: "Vehicles & Spare Parts",
+        condition: "Brand New (Japan OEM)",
+        priceUgx: 420000,
+        discountPercent: 0,
+        rating: 4.8,
+        originRegion: "Kisekka Market, Kampala",
+        icon: "car",
+        image: "https://images.unsplash.com/photo-1486006920555-c77dce18193b?w=500&q=80",
+        inStock: true
+      },
+      {
+        id: "prod_8",
+        name: "Chloride Exide 200Ah Deep Cycle Solar Battery",
+        category: "Solar & Hardware",
+        condition: "Brand New (Boxed)",
+        priceUgx: 980000,
+        discountPercent: 7,
+        rating: 4.9,
+        originRegion: "Nakawa Industrial Area",
+        icon: "sun",
+        image: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=500&q=80",
+        inStock: true
+      },
+      {
+        id: "prod_9",
+        name: "Nike Air Force 1 '07 All White Leather Sneakers",
+        category: "Fashion & Shoes",
+        condition: "Brand New (Original)",
+        priceUgx: 320000,
+        discountPercent: 12,
+        rating: 4.8,
+        originRegion: "Pioneer Mall, Kampala",
+        icon: "shirt",
+        image: "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=500&q=80",
+        inStock: true
+      },
+      {
+        id: "prod_10",
+        name: "Italian Leather Chesterfield 3-Seater Sofa (Dark Oak)",
+        category: "Home & Furniture",
+        condition: "Brand New (Handcrafted)",
+        priceUgx: 2800000,
+        discountPercent: 5,
+        rating: 4.8,
+        originRegion: "Nsambya Furniture Hub",
+        icon: "armchair",
+        image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=500&q=80",
+        inStock: true
+      },
+      {
+        id: "prod_11",
+        name: "Handmade Ugandan Barkcloth Wall Art & Heritage Decor",
+        category: "Home & Furniture",
+        condition: "Artisan Craft",
+        priceUgx: 85000,
+        discountPercent: 0,
+        rating: 5.0,
+        originRegion: "National Theatre Craft Village",
+        icon: "palette",
+        image: "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=500&q=80",
+        inStock: true
+      },
+      {
+        id: "prod_12",
+        name: "Total Energies 5.5KVA Silent Heavy Generator",
+        category: "Solar & Hardware",
+        condition: "Brand New (Boxed)",
+        priceUgx: 3600000,
+        discountPercent: 6,
+        rating: 4.9,
+        originRegion: "Sixth Street, Industrial Area",
+        icon: "zap",
+        image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=500&q=80",
+        inStock: true
+      }
+    ];
+
+    const INITIAL_ORDERS = [
+      {
+        id: "CR-78201",
+        customerName: "Sempala Ronald",
+        phone: "0772849102",
+        address: "Bukoto Street, Plot 14",
+        city: "Kampala Central",
+        totalUgx: 1855000,
+        paymentMethod: "MTN MoMo",
+        status: "DISPATCHED",
+        riderName: "Kato Juma (UES 482K)",
+        items: ["HP EliteBook 840 G8"],
+        date: "Today, 10:15 AM"
+      },
+      {
+        id: "CR-78194",
+        customerName: "Achan Grace",
+        phone: "0751908221",
+        address: "Ntinda Ministers Village",
+        city: "Nakawa",
+        totalUgx: 325000,
+        paymentMethod: "Airtel Money",
+        status: "DELIVERED",
+        riderName: "Mukasa David (UFA 119B)",
+        items: ["Nike Air Force 1 Sneakers"],
+        date: "Yesterday"
+      }
+    ];
+
+    const INITIAL_SOURCING_REQUESTS = [
+      {
+        id: "SRC-101",
+        title: "Original MacBook Pro M3 Max 64GB RAM",
+        category: "Laptops & Computers",
+        budgetUgx: 9500000,
+        customerName: "Mugerwa Ivan",
+        phone: "0704992110",
+        location: "Kololo, Kampala",
+        status: "PENDING_QUOTE"
+      },
+      {
+        id: "SRC-102",
+        title: "Subaru Forester XT 2015 Radiator Assembly",
+        category: "Vehicles & Spare Parts",
+        budgetUgx: 750000,
+        customerName: "Tumukunde Brian",
+        phone: "0778119022",
+        location: "Najjera, Kampala",
+        status: "SOURCED"
+      }
+    ];
+
+    // =========================================================================
+    // 2. LOCALSTORAGE INITIALIZATION
+    // =========================================================================
+    function getDB(key, fallback) {
+      const data = localStorage.getItem('crane_' + key);
+      return data ? JSON.parse(data) : fallback;
+    }
+    function saveDB(key, data) {
+      localStorage.setItem('crane_' + key, JSON.stringify(data));
+    }
+
+    let productsDB = getDB('products', INITIAL_PRODUCTS);
+    let ordersDB = getDB('orders', INITIAL_ORDERS);
+    let sourcingDB = getDB('sourcing', INITIAL_SOURCING_REQUESTS);
+    let cart = getDB('cart', [
+      { productId: "prod_6", quantity: 1 } // sample starter item
+    ]);
+    let loyaltyPoints = parseInt(localStorage.getItem('crane_points') || '1250', 10);
+    let appliedCoupon = null;
+    let isAdmin = localStorage.getItem('crane_admin_logged') === 'true';
+
+    // Categories list
+    const CATEGORIES = [
+      "All Products",
+      "Phones & Tablets",
+      "Laptops & Computers",
+      "Electronics & TVs",
+      "Vehicles & Spare Parts",
+      "Solar & Hardware",
+      "Fashion & Shoes",
+      "Home & Furniture"
+    ];
+
+    let selectedCategory = "All Products";
+    let maxBudgetLimit = 5000000;
+    let minBudgetLimit = 0;
+
+    // =========================================================================
+    // 3. UI RENDERING ENGINES
+    // =========================================================================
+    function initApp() {
+      renderCategoryPills();
+      renderProductsGrid();
+      updateCartBadge();
+      updateLoyaltyDisplay();
+      populateTrackingOrderSelect();
+      checkAdminStatus();
+      lucide.createIcons();
+    }
+
+    function formatUgx(num) {
+      return Number(num).toLocaleString('en-US') + " UGX";
+    }
+
+    function renderCategoryPills() {
+      const container = document.getElementById('category-pills-container');
+      container.innerHTML = CATEGORIES.map(cat => {
+        const isSelected = selectedCategory === cat;
+        return `
+          <button 
+            onclick="setCategoryFilter('${cat}')" 
+            class="px-3.5 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition ${
+              isSelected 
+                ? 'bg-brand-800 text-white shadow-md' 
+                : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
+            }"
+          >
+            ${cat}
+          </button>
+        `;
+      }).join('');
+    }
+
+    function renderProductsGrid() {
+      const grid = document.getElementById('products-grid');
+      const noProdsView = document.getElementById('no-products-view');
+      const countLabel = document.getElementById('product-count-label');
+      const searchKeyword = (document.getElementById('search-input')?.value || '').toLowerCase().trim();
+      const sortOrder = document.getElementById('sort-select')?.value || 'featured';
+
+      let list = productsDB.filter(p => {
+        // Category filter
+        if (selectedCategory !== "All Products" && p.category !== selectedCategory) return false;
+        
+        // Calculate discounted price
+        const finalPrice = p.priceUgx * (1 - (p.discountPercent || 0)/100);
+        if (finalPrice < minBudgetLimit) return false;
+        if (maxBudgetLimit < 5000000 && finalPrice > maxBudgetLimit) return false;
+
+        // Search query
+        if (searchKeyword) {
+          const matchName = p.name.toLowerCase().includes(searchKeyword);
+          const matchCat = p.category.toLowerCase().includes(searchKeyword);
+          const matchOrigin = (p.originRegion || '').toLowerCase().includes(searchKeyword);
+          if (!matchName && !matchCat && !matchOrigin) return false;
+        }
+
+        return true;
+      });
+
+      // Sorting
+      if (sortOrder === 'price_asc') {
+        list.sort((a,b) => (a.priceUgx*(1-(a.discountPercent||0)/100)) - (b.priceUgx*(1-(b.discountPercent||0)/100)));
+      } else if (sortOrder === 'price_desc') {
+        list.sort((a,b) => (b.priceUgx*(1-(b.discountPercent||0)/100)) - (a.priceUgx*(1-(a.discountPercent||0)/100)));
+      } else if (sortOrder === 'rating') {
+        list.sort((a,b) => (b.rating || 0) - (a.rating || 0));
+      }
+
+      countLabel.innerText = `${list.length} items in budget range`;
+
+      if (list.length === 0) {
+        grid.innerHTML = '';
+        noProdsView.classList.remove('hidden');
+        return;
+      }
+
+      noProdsView.classList.add('hidden');
+      grid.innerHTML = list.map(prod => {
+        const finalPrice = prod.priceUgx * (1 - (prod.discountPercent || 0)/100);
+        return `
+          <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col hover:shadow-md transition duration-200 group">
+            <!-- Product Image Header -->
+            <div class="relative h-44 w-full bg-slate-100 overflow-hidden">
+              <img 
+                src="${prod.image}" 
+                alt="${prod.name}" 
+                class="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+                onerror="this.src='https://images.unsplash.com/photo-1526738549149-8e07eca6c147?w=500&q=80'"
+              />
+              <span class="absolute top-2.5 left-2.5 bg-brand-800/90 text-white text-[10px] font-black px-2 py-0.5 rounded shadow">
+                ${prod.condition}
+              </span>
+              ${prod.discountPercent > 0 ? `
+                <span class="absolute top-2.5 right-2.5 bg-red-600 text-white text-[10px] font-black px-2 py-0.5 rounded shadow">
+                  -${prod.discountPercent}%
+                </span>
+              ` : ''}
+            </div>
+
+            <!-- Product Body -->
+            <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+              <div>
+                <div class="flex items-center space-x-1 text-[11px] text-amber-600 font-bold mb-1">
+                  <i data-lucide="star" class="w-3 h-3 fill-current text-amber-500"></i>
+                  <span>${prod.rating || '4.9'} &bull; Verified Uganda Dealer</span>
+                </div>
+                <h3 class="font-bold text-sm text-slate-900 line-clamp-2 leading-snug">
+                  ${prod.name}
+                </h3>
+                <div class="flex items-center space-x-1 text-[11px] text-slate-500 mt-1">
+                  <i data-lucide="map-pin" class="w-3 h-3 text-slate-400"></i>
+                  <span class="truncate">${prod.originRegion}</span>
+                </div>
+              </div>
+
+              <!-- Price & Buy Button -->
+              <div class="pt-2 border-t border-slate-100 flex items-center justify-between">
+                <div>
+                  <div class="text-sm sm:text-base font-black text-brand-800">
+                    ${formatUgx(finalPrice)}
+                  </div>
+                  ${prod.discountPercent > 0 ? `
+                    <div class="text-[10px] text-slate-400 line-through">
+                      ${formatUgx(prod.priceUgx)}
+                    </div>
+                  ` : ''}
+                </div>
+
+                <button 
+                  onclick="quickBuyProduct('${prod.id}')" 
+                  class="bg-brand-800 hover:bg-brand-900 text-white font-extrabold text-xs px-3.5 py-2 rounded-xl shadow transition flex items-center space-x-1.5"
+                >
+                  <i data-lucide="shopping-cart" class="w-3.5 h-3.5 text-brand-gold"></i>
+                  <span>BUY</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      lucide.createIcons();
+    }
+
+    // =========================================================================
+    // 4. FILTERING & SEARCH CONTROLS
+    // =========================================================================
+    function setCategoryFilter(cat) {
+      selectedCategory = cat;
+      renderCategoryPills();
+      renderProductsGrid();
+    }
+
+    function handleSearchFilterChange() {
+      renderProductsGrid();
+    }
+
+    function handleBudgetSlider(val) {
+      maxBudgetLimit = parseInt(val, 10);
+      document.getElementById('budget-max-label').innerText = maxBudgetLimit >= 5000000 ? "5,000,000+" : formatUgx(maxBudgetLimit);
+      renderProductsGrid();
+    }
+
+    function setBudgetPreset(min, max) {
+      minBudgetLimit = min;
+      maxBudgetLimit = max;
+      document.getElementById('budget-slider').value = max;
+      document.getElementById('budget-min-label').innerText = formatUgx(min);
+      document.getElementById('budget-max-label').innerText = max >= 5000000 ? "5,000,000+" : formatUgx(max);
+      renderProductsGrid();
+    }
+
+    function resetFilters() {
+      selectedCategory = "All Products";
+      minBudgetLimit = 0;
+      maxBudgetLimit = 5000000;
+      document.getElementById('budget-slider').value = 5000000;
+      document.getElementById('budget-min-label').innerText = "0";
+      document.getElementById('budget-max-label').innerText = "5,000,000+";
+      document.getElementById('search-input').value = "";
+      document.getElementById('sort-select').value = "featured";
+      renderCategoryPills();
+      renderProductsGrid();
+      showToast("Filters reset to default.");
+    }
+
+    // =========================================================================
+    // 5. CART & CHECKOUT ENGINE
+    // =========================================================================
+    function updateCartBadge() {
+      const count = cart.reduce((acc, i) => acc + i.quantity, 0);
+      document.getElementById('cart-badge-count').innerText = count;
+    }
+
+    function quickBuyProduct(productId) {
+      const existing = cart.find(i => i.productId === productId);
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cart.push({ productId: productId, quantity: 1 });
+      }
+      saveDB('cart', cart);
+      updateCartBadge();
+      const p = productsDB.find(x => x.id === productId);
+      showToast(`Added "${p ? p.name.substring(0,25)+'...' : 'Item'}" to cart!`);
+      openCartModal();
+    }
+
+    function openCartModal() {
+      renderCartItems();
+      document.getElementById('cart-modal').classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    function closeCartModal() {
+      document.getElementById('cart-modal').classList.add('hidden');
+    }
+
+    function renderCartItems() {
+      const container = document.getElementById('cart-items-container');
+      const emptyNotice = document.getElementById('cart-empty-notice');
+      const checkoutForm = document.getElementById('checkout-form-section');
+
+      if (cart.length === 0) {
+        container.innerHTML = '';
+        emptyNotice.classList.remove('hidden');
+        checkoutForm.classList.add('hidden');
+        updateCartTotals();
+        return;
+      }
+
+      emptyNotice.classList.add('hidden');
+      checkoutForm.classList.remove('hidden');
+
+      container.innerHTML = cart.map(item => {
+        const prod = productsDB.find(p => p.id === item.productId);
+        if (!prod) return '';
+        const finalPrice = prod.priceUgx * (1 - (prod.discountPercent || 0)/100);
+        return `
+          <div class="py-3 flex items-center justify-between gap-3">
+            <img src="${prod.image}" class="w-12 h-12 rounded-xl object-cover border border-slate-200 shrink-0" onerror="this.src='https://images.unsplash.com/photo-1526738549149-8e07eca6c147?w=500&q=80'"/>
+            <div class="flex-1 min-w-0">
+              <h5 class="text-xs font-bold text-slate-900 truncate">${prod.name}</h5>
+              <div class="text-xs font-black text-brand-800">${formatUgx(finalPrice)}</div>
+            </div>
+            
+            <div class="flex items-center space-x-2">
+              <button onclick="changeCartQty('${prod.id}', -1)" class="w-6 h-6 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs">-</button>
+              <span class="text-xs font-black px-1">${item.quantity}</span>
+              <button onclick="changeCartQty('${prod.id}', 1)" class="w-6 h-6 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs">+</button>
+              <button onclick="removeFromCart('${prod.id}')" class="text-red-500 hover:text-red-700 p-1">
+                <i data-lucide="trash" class="w-4 h-4"></i>
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      updateCartTotals();
+      lucide.createIcons();
+    }
+
+    function changeCartQty(prodId, delta) {
+      const item = cart.find(i => i.productId === prodId);
+      if (item) {
+        item.quantity += delta;
+        if (item.quantity <= 0) {
+          cart = cart.filter(i => i.productId !== prodId);
+        }
+      }
+      saveDB('cart', cart);
+      updateCartBadge();
+      renderCartItems();
+    }
+
+    function removeFromCart(prodId) {
+      cart = cart.filter(i => i.productId !== prodId);
+      saveDB('cart', cart);
+      updateCartBadge();
+      renderCartItems();
+    }
+
+    function updateCartTotals() {
+      let subtotal = 0;
+      cart.forEach(item => {
+        const prod = productsDB.find(p => p.id === item.productId);
+        if (prod) {
+          const finalPrice = prod.priceUgx * (1 - (prod.discountPercent || 0)/100);
+          subtotal += finalPrice * item.quantity;
+        }
+      });
+
+      const deliveryFee = parseInt(document.getElementById('checkout-delivery-method')?.value || '5000', 10);
+      let discount = 0;
+      if (appliedCoupon === 'CRANE5K' && subtotal >= 50000) discount = 5000;
+      if (appliedCoupon === 'BODAFREE') discount = deliveryFee;
+      if (appliedCoupon === 'VIPGOLD') discount = subtotal * 0.10;
+
+      const grandTotal = Math.max(0, subtotal + deliveryFee - discount);
+
+      document.getElementById('cart-subtotal').innerText = formatUgx(subtotal);
+      document.getElementById('cart-delivery-fee').innerText = formatUgx(deliveryFee);
+      
+      const discountRow = document.getElementById('cart-discount-row');
+      if (discount > 0) {
+        discountRow.classList.remove('hidden');
+        document.getElementById('cart-discount-amount').innerText = `-${formatUgx(discount)}`;
+      } else {
+        discountRow.classList.add('hidden');
+      }
+
+      document.getElementById('cart-grand-total').innerText = formatUgx(grandTotal);
+      return { subtotal, deliveryFee, discount, grandTotal };
+    }
+
+    function applyCartCoupon() {
+      const code = (document.getElementById('cart-coupon-input').value || '').trim().toUpperCase();
+      if (code === 'CRANE5K' || code === 'BODAFREE' || code === 'VIPGOLD') {
+        appliedCoupon = code;
+        updateCartTotals();
+        showToast(`Coupon "${code}" applied successfully! 🎉`);
+      } else {
+        showToast("Invalid promo code. Try CRANE5K or BODAFREE");
+      }
+    }
+
+    function handlePaymentMethodChange(val) {
+      const cards = document.querySelectorAll('.payment-method-card');
+      cards.forEach(c => c.classList.remove('border-amber-400', 'bg-amber-50/50', 'border-red-400', 'border-emerald-400'));
+    }
+
+    function initiatePaymentCheckout() {
+      const name = document.getElementById('checkout-name').value.trim();
+      const phone = document.getElementById('checkout-phone').value.trim();
+      const address = document.getElementById('checkout-address').value.trim();
+      const city = document.getElementById('checkout-city').value;
+      const method = document.querySelector('input[name="payment_method"]:checked')?.value || 'MTN_MOMO';
+
+      if (!name || !phone || !address) {
+        showToast("Please fill in your name, phone number, and delivery address.");
+        return;
+      }
+
+      const { grandTotal } = updateCartTotals();
+      if (grandTotal <= 0 && cart.length === 0) {
+        showToast("Cart is empty.");
+        return;
+      }
+
+      // If Mobile Money, show USSD PIN Prompt
+      if (method === 'MTN_MOMO' || method === 'AIRTEL_MONEY') {
+        document.getElementById('ussd-network-badge').innerText = method === 'MTN_MOMO' ? "MTN MoMo Pay (*165#)" : "Airtel Money Pay (*185#)";
+        document.getElementById('ussd-amount-label').innerText = formatUgx(grandTotal);
+        document.getElementById('ussd-phone-label').innerText = phone;
+        document.getElementById('ussd-pin-input').value = "";
+        document.getElementById('ussd-pin-modal').classList.remove('hidden');
+      } else {
+        completeOrderCheckout(method);
+      }
+    }
+
+    function closeUssdModal() {
+      document.getElementById('ussd-pin-modal').classList.add('hidden');
+    }
+
+    function confirmUssdPayment() {
+      const pin = document.getElementById('ussd-pin-input').value;
+      if (pin.length < 4) {
+        showToast("Please enter a 4-digit PIN.");
+        return;
+      }
+      closeUssdModal();
+      const method = document.querySelector('input[name="payment_method"]:checked')?.value || 'MTN_MOMO';
+      completeOrderCheckout(method);
+    }
+
+    function completeOrderCheckout(methodName) {
+      const name = document.getElementById('checkout-name').value;
+      const phone = document.getElementById('checkout-phone').value;
+      const address = document.getElementById('checkout-address').value;
+      const city = document.getElementById('checkout-city').value;
+      const { grandTotal } = updateCartTotals();
+
+      const itemNames = cart.map(i => {
+        const p = productsDB.find(x => x.id === i.productId);
+        return p ? p.name : 'Product';
+      });
+
+      const newOrder = {
+        id: "CR-" + Math.floor(10000 + Math.random() * 90000),
+        customerName: name,
+        phone: phone,
+        address: address,
+        city: city,
+        totalUgx: grandTotal,
+        paymentMethod: methodName === 'MTN_MOMO' ? 'MTN MoMo' : methodName === 'AIRTEL_MONEY' ? 'Airtel Money' : methodName === 'COD' ? 'Cash on Del.' : 'Debit Card',
+        status: "DISPATCHED",
+        riderName: "Kato Juma (UES 482K)",
+        items: itemNames,
+        date: "Just now"
+      };
+
+      ordersDB.unshift(newOrder);
+      saveDB('orders', ordersDB);
+
+      // Points earned
+      const earnedPoints = Math.floor(grandTotal / 1000);
+      loyaltyPoints += earnedPoints;
+      localStorage.setItem('crane_points', loyaltyPoints.toString());
+      updateLoyaltyDisplay();
+
+      // Clear cart
+      cart = [];
+      saveDB('cart', cart);
+      updateCartBadge();
+      closeCartModal();
+
+      showToast(`Order #${newOrder.id} confirmed! +${earnedPoints} Crane Points earned. Boda dispatched 🛵`);
+
+      // Switch to tracking tab
+      populateTrackingOrderSelect();
+      handleSelectTrackingOrder(newOrder.id);
+      switchTab('tracking');
+    }
+
+    // =========================================================================
+    // 6. DIRECT BUY / SOURCING REQUEST MODAL
+    // =========================================================================
+    function openBuyItemModal() {
+      document.getElementById('buy-request-modal').classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    function closeBuyItemModal() {
+      document.getElementById('buy-request-modal').classList.add('hidden');
+    }
+
+    function handleDirectBuySubmit(e) {
+      e.preventDefault();
+      const title = document.getElementById('buy-req-title').value;
+      const cat = document.getElementById('buy-req-category').value;
+      const budget = parseFloat(document.getElementById('buy-req-budget').value) || 0;
+      const name = document.getElementById('buy-req-name').value;
+      const phone = document.getElementById('buy-req-phone').value;
+      const location = document.getElementById('buy-req-location').value;
+
+      const newReq = {
+        id: "SRC-" + Math.floor(100 + Math.random() * 900),
+        title: title,
+        category: cat,
+        budgetUgx: budget,
+        customerName: name,
+        phone: phone,
+        location: location,
+        status: "PENDING_QUOTE"
+      };
+
+      sourcingDB.unshift(newReq);
+      saveDB('sourcing', sourcingDB);
+      closeBuyItemModal();
+      showToast(`Procurement Request for "${title}" submitted! An agent will call ${phone} shortly.`);
+    }
+
+    // =========================================================================
+    // 7. BODA TRACKING TELEMETRY
+    // =========================================================================
+    function populateTrackingOrderSelect() {
+      const select = document.getElementById('tracking-order-select');
+      if (ordersDB.length === 0) {
+        select.innerHTML = `<option value="">No Active Orders</option>`;
+        return;
+      }
+      select.innerHTML = ordersDB.map(o => `
+        <option value="${o.id}">${o.id} &bull; ${o.customerName} (${formatUgx(o.totalUgx)})</option>
+      `).join('');
+    }
+
+    function handleSelectTrackingOrder(orderId) {
+      const order = ordersDB.find(o => o.id === orderId) || ordersDB[0];
+      if (order) {
+        document.getElementById('tracker-dest-label').innerText = `${order.address}, ${order.city}`;
+        document.getElementById('tracker-rider-name').innerText = order.riderName.split('(')[0].trim();
+      }
+    }
+
+    // =========================================================================
+    // 8. AI SHOPPING CONCIERGE CHATBOT
+    // =========================================================================
+    function handleSendChatMessage(e) {
+      e.preventDefault();
+      const input = document.getElementById('chat-input');
+      const text = input.value.trim();
+      if (!text) return;
+
+      appendChatMessage('user', text);
+      input.value = '';
+
+      // AI Response Simulation
+      setTimeout(() => {
+        const response = generateAIResponse(text);
+        appendChatMessage('ai', response);
+      }, 700);
+    }
+
+    function quickChatPrompt(prompt) {
+      document.getElementById('chat-input').value = prompt;
+      handleSendChatMessage(new Event('submit'));
+    }
+
+    function appendChatMessage(sender, message) {
+      const container = document.getElementById('chat-messages-container');
+      const isUser = sender === 'user';
+      
+      const msgHtml = isUser ? `
+        <div class="flex items-start justify-end space-x-2">
+          <div class="bg-brand-800 text-white rounded-2xl rounded-tr-sm p-3.5 max-w-[85%] text-xs sm:text-sm">
+            ${message}
+          </div>
+          <div class="w-7 h-7 rounded-full bg-slate-200 text-slate-700 flex items-center justify-center text-xs font-bold shrink-0 mt-1">
+            U
+          </div>
+        </div>
+      ` : `
+        <div class="flex items-start space-x-3">
+          <div class="w-8 h-8 rounded-full bg-brand-700 flex items-center justify-center text-white shrink-0 mt-1">
+            <i data-lucide="bot" class="w-4 h-4"></i>
+          </div>
+          <div class="bg-slate-100 text-slate-800 rounded-2xl rounded-tl-sm p-3.5 max-w-[85%] text-xs sm:text-sm space-y-2">
+            ${message}
+          </div>
+        </div>
+      `;
+
+      container.insertAdjacentHTML('beforeend', msgHtml);
+      container.scrollTop = container.scrollHeight;
+      lucide.createIcons();
+    }
+
+    function generateAIResponse(query) {
+      const q = query.toLowerCase();
+      if (q.includes('laptop') || q.includes('computer')) {
+        return `<p>We currently stock top laptops in Kampala! For budgets under 2M UGX, check out the <strong>HP EliteBook 840 G8</strong> (Core i7, 16GB RAM) at <strong>UGX 1,850,000</strong>. Or Dell XPS 13 OLED at UGX 3,950,000.</p>`;
+      }
+      if (q.includes('momo') || q.includes('airtel') || q.includes('pay')) {
+        return `<p>Paying with Mobile Money on Crane Stores is instant and zero charge! We support:</p>
+        <ul class="list-disc pl-4 text-xs space-y-1">
+          <li><strong>MTN MoMo (*165#)</strong>: Automatic push prompt to your phone.</li>
+          <li><strong>Airtel Money (*185#)</strong>: Instant USSD verification.</li>
+        </ul>
+        <p>Both qualify for instant loyalty cashback points!</p>`;
+      }
+      if (q.includes('delivery') || q.includes('entebbe') || q.includes('jinja') || q.includes('boda')) {
+        return `<p>We offer <strong>same-day Boda Boda dispatch (UGX 5,000)</strong> within Kampala, Kira, Nansana, and Entebbe. For upcountry deliveries (Jinja, Mbarara, Gulu), regional express vans deliver within 24 hours.</p>`;
+      }
+      if (q.includes('phone') || q.includes('samsung') || q.includes('iphone')) {
+        return `<p>Our verified flagship mobile phones include the <strong>Samsung Galaxy S24 Ultra (512GB)</strong> at <strong>UGX 4,850,000</strong> and <strong>iPhone 15 Pro (256GB)</strong> at <strong>UGX 4,200,000</strong>. Both include manufacturer warranty.</p>`;
+      }
+      return `<p>Thanks for your inquiry! I can help you find verified non-food items, check stock levels at Oasis Mall, or arrange custom procurement. Use the <strong>+ BUY ITEM</strong> button above if you need a specific quotation!</p>`;
+    }
+
+    function clearChatHistory() {
+      const container = document.getElementById('chat-messages-container');
+      container.innerHTML = `
+        <div class="flex items-start space-x-3">
+          <div class="w-8 h-8 rounded-full bg-brand-700 flex items-center justify-center text-white shrink-0 mt-1">
+            <i data-lucide="bot" class="w-4 h-4"></i>
+          </div>
+          <div class="bg-slate-100 text-slate-800 rounded-2xl rounded-tl-sm p-3.5 max-w-[85%] text-xs sm:text-sm">
+            Chat cleared. How can I assist you with your shopping today?
+          </div>
+        </div>
+      `;
+      lucide.createIcons();
+    }
+
+    // =========================================================================
+    // 9. LOYALTY & REWARDS WHEEL
+    // =========================================================================
+    function updateLoyaltyDisplay() {
+      document.getElementById('loyalty-points-display').innerText = loyaltyPoints.toLocaleString('en-US');
+    }
+
+    function spinLuckyWheel() {
+      const wheel = document.getElementById('wheel-circle');
+      const btn = document.getElementById('spin-btn');
+      btn.disabled = true;
+      btn.innerText = "Spinning Wheel... 🎡";
+
+      wheel.classList.add('rotate-[1440deg]');
+      setTimeout(() => {
+        wheel.classList.remove('rotate-[1440deg]');
+        const bonus = 250;
+        loyaltyPoints += bonus;
+        localStorage.setItem('crane_points', loyaltyPoints.toString());
+        updateLoyaltyDisplay();
+        btn.disabled = false;
+        btn.innerText = "Spin Free Today 🎡";
+        showToast(`🎉 Congratulations! You won +${bonus} Crane Points!`);
+      }, 1200);
+    }
+
+    function copyCouponCode(code) {
+      navigator.clipboard.writeText(code);
+      showToast(`Copied coupon code: ${code}`);
+    }
+
+    // =========================================================================
+    // 10. ADMIN PORTAL & INVENTORY CONTROLS (Protected)
+    // =========================================================================
+    function handleAdminPortalClick() {
+      if (isAdmin) {
+        switchTab('admin');
+      } else {
+        document.getElementById('admin-pin-modal').classList.remove('hidden');
+        document.getElementById('admin-pin-error').classList.add('hidden');
+        document.getElementById('admin-pin-input').value = "";
+      }
+    }
+
+    function closeAdminPinModal() {
+      document.getElementById('admin-pin-modal').classList.add('hidden');
+    }
+
+    function verifyAdminPinSubmit() {
+      const pin = document.getElementById('admin-pin-input').value.trim();
+      if (pin === "2560" || pin === "1234") {
+        isAdmin = true;
+        localStorage.setItem('crane_admin_logged', 'true');
+        closeAdminPinModal();
+        checkAdminStatus();
+        switchTab('admin');
+        showToast("Master Admin Mode Unlocked!");
+      } else {
+        document.getElementById('admin-pin-error').classList.remove('hidden');
+      }
+    }
+
+    function logoutAdmin() {
+      isAdmin = false;
+      localStorage.setItem('crane_admin_logged', 'false');
+      checkAdminStatus();
+      switchTab('market');
+      showToast("Exited Admin Mode.");
+    }
+
+    function checkAdminStatus() {
+      const topBanner = document.getElementById('admin-top-banner');
+      const adminNavTab = document.getElementById('tab-btn-admin');
+      if (isAdmin) {
+        topBanner.classList.remove('hidden');
+        adminNavTab.classList.remove('hidden');
+      } else {
+        topBanner.classList.add('hidden');
+        adminNavTab.classList.add('hidden');
+      }
+    }
+
+    function renderAdminTables() {
+      // 1. Inventory Table
+      const invBody = document.getElementById('admin-inventory-table-body');
+      invBody.innerHTML = productsDB.map(p => `
+        <tr class="hover:bg-slate-50">
+          <td class="py-3 px-4 font-bold text-slate-900">${p.name}</td>
+          <td class="py-3 px-4 text-slate-600">${p.category}</td>
+          <td class="py-3 px-4 text-slate-500">${p.condition}</td>
+          <td class="py-3 px-4 font-black text-brand-800">${formatUgx(p.priceUgx)}</td>
+          <td class="py-3 px-4">
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold ${p.inStock !== false ? 'bg-emerald-100 text-emerald-800' : 'bg-red-100 text-red-800'}">
+              ${p.inStock !== false ? 'In Stock' : 'Out of Stock'}
+            </span>
+          </td>
+          <td class="py-3 px-4 text-right space-x-2">
+            <button onclick="toggleProductStock('${p.id}')" class="text-xs text-blue-600 hover:underline font-bold">Toggle Stock</button>
+            <button onclick="deleteProduct('${p.id}')" class="text-xs text-red-600 hover:underline font-bold">Delete</button>
+          </td>
+        </tr>
+      `).join('');
+
+      // 2. Sourcing Table
+      const srcBody = document.getElementById('admin-sourcing-table-body');
+      srcBody.innerHTML = sourcingDB.map(s => `
+        <tr class="hover:bg-slate-50">
+          <td class="py-3 px-4 font-bold text-slate-900">${s.title}</td>
+          <td class="py-3 px-4 text-slate-700">${s.customerName} (${s.phone})</td>
+          <td class="py-3 px-4 font-black text-amber-700">${formatUgx(s.budgetUgx)}</td>
+          <td class="py-3 px-4 text-slate-500">${s.location}</td>
+          <td class="py-3 px-4">
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold ${s.status === 'SOURCED' ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'}">
+              ${s.status}
+            </span>
+          </td>
+          <td class="py-3 px-4 text-right">
+            <a href="tel:${s.phone}" class="bg-brand-700 text-white px-2.5 py-1 rounded text-[11px] font-bold hover:bg-brand-800">Call Customer</a>
+          </td>
+        </tr>
+      `).join('');
+
+      // Update summary counts
+      document.getElementById('admin-products-count').innerText = productsDB.length;
+      document.getElementById('admin-orders-count').innerText = ordersDB.length;
+      document.getElementById('admin-sourcing-count').innerText = sourcingDB.length;
+    }
+
+    function toggleProductStock(prodId) {
+      const p = productsDB.find(x => x.id === prodId);
+      if (p) {
+        p.inStock = p.inStock === false ? true : false;
+        saveDB('products', productsDB);
+        renderAdminTables();
+        renderProductsGrid();
+        showToast(`Updated stock status for ${p.name}`);
+      }
+    }
+
+    function deleteProduct(prodId) {
+      if (confirm("Are you sure you want to remove this product from the store?")) {
+        productsDB = productsDB.filter(x => x.id !== prodId);
+        saveDB('products', productsDB);
+        renderAdminTables();
+        renderProductsGrid();
+        showToast("Product deleted.");
+      }
+    }
+
+    function openAddProductModal() {
+      document.getElementById('add-product-modal').classList.remove('hidden');
+    }
+
+    function closeAddProductModal() {
+      document.getElementById('add-product-modal').classList.add('hidden');
+    }
+
+    function handleSaveProductSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('prod-name').value;
+      const cat = document.getElementById('prod-category').value;
+      const condition = document.getElementById('prod-condition').value;
+      const price = parseFloat(document.getElementById('prod-price').value) || 0;
+      const discount = parseInt(document.getElementById('prod-discount').value || '0', 10);
+      let img = document.getElementById('prod-image').value.trim();
+
+      if (!img || !img.startsWith('http')) {
+        img = "https://images.unsplash.com/photo-1526738549149-8e07eca6c147?w=500&q=80";
+      }
+
+      const newProd = {
+        id: "prod_" + Date.now(),
+        name: name,
+        category: cat,
+        condition: condition,
+        priceUgx: price,
+        discountPercent: discount,
+        rating: 5.0,
+        originRegion: "Kampala Central",
+        image: img,
+        inStock: true
+      };
+
+      productsDB.unshift(newProd);
+      saveDB('products', productsDB);
+      closeAddProductModal();
+      renderAdminTables();
+      renderProductsGrid();
+      showToast(`Product "${name}" added to store catalog!`);
+    }
+
+    function exportDatabaseJSON() {
+      const backup = {
+        products: productsDB,
+        orders: ordersDB,
+        sourcing: sourcingDB,
+        points: loyaltyPoints,
+        exportedAt: new Date().toISOString()
+      };
+      const blob = new Blob([JSON.stringify(backup, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `crane_stores_backup_${Date.now()}.json`;
+      a.click();
+      showToast("Database exported as JSON backup.");
+    }
+
+    // =========================================================================
+    // 11. TAB SWITCHER & GENERAL UTILITIES
+    // =========================================================================
+    function switchTab(tabId) {
+      // Hide all panes
+      document.querySelectorAll('.tab-pane').forEach(el => el.classList.add('hidden'));
+      // Remove active nav styles
+      document.querySelectorAll('.nav-tab').forEach(el => {
+        el.classList.remove('bg-brand-700', 'text-white', 'font-bold');
+        el.classList.add('text-blue-200', 'font-medium');
+      });
+
+      // Show selected pane
+      const pane = document.getElementById('tab-content-' + tabId);
+      if (pane) pane.classList.remove('hidden');
+
+      // Highlight button
+      const btn = document.getElementById('tab-btn-' + tabId);
+      if (btn) {
+        btn.classList.add('bg-brand-700', 'text-white', 'font-bold');
+        btn.classList.remove('text-blue-200', 'font-medium');
+      }
+
+      if (tabId === 'admin') {
+        renderAdminTables();
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function showToast(message) {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      toast.className = "bg-slate-900 text-white text-xs font-semibold px-4 py-3 rounded-2xl shadow-xl border border-slate-700 flex items-center space-x-2 pointer-events-auto transition duration-300 animate-in fade-in slide-in-from-bottom-2";
+      toast.innerHTML = `
+        <div class="w-2 h-2 rounded-full bg-brand-gold"></div>
+        <span>${message}</span>
+      `;
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        setTimeout(() => toast.remove(), 300);
+      }, 3500);
+    }
+
+    // Initialize on page load
+    window.addEventListener('DOMContentLoaded', initApp);
+  </script>
+</body>
+</html>
