@@ -1,0 +1,6 @@
+{
+  "name": "Crane Stores Uganda",
+  "description": "Online shopping platform for local Ugandan products with real-time order tracking, secure payments, loyalty rewards, and admin dashboard.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
